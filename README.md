@@ -1,7 +1,6 @@
 Animation
 =========
-模仿jquery animate写的一个简单的animation对象
-=========
+一个类似jquery animate的一个js 动画方法
 
 Animate(elem,property,duration,easing,callback)
 =========

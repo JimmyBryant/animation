@@ -7,26 +7,41 @@
 	   *{margin:0;padding:0;}
 	    body{
 		  font:12px/1.5  Tahoma, Arial, sans-serif;
+		  background:#EDEDED;
 		}
-		.wrap{
+		.main{
+		   width:980px;
+		   margin:0 auto;
+		   background:#FFF;
+		   position:relative;
+		   padding: 50px 0;
+		}
+		.section{
 			position:relative;
-			height:100px;
-			padding-top:50px;
+			margin:20px 0;
 		}
-		.wrap>a{
-			position:absolute;
+		.section>div{
+		    position:relative;
+		}
+		.section>div>a{
+			position:relative;
+			display:block;
 			width:50px;
 			height:50px;
-			background:#DCF7DD;
+			background:#0c4a96;
 			border:1px solid #000;
 			border-radius:5px;
 			text-align:center;
 			top:0;
 			left:0;
 			text-decoration:none;
+			outline:none;
+			line-height:45px;
+			padding:20px;
+		
 		}
-		.wrap>.a2{
-			background:#000;
+		.section>#a2{
+			background:#0c4a96;
 		}
 	
 	</style>
@@ -39,18 +54,34 @@
 
 </head>
 <body>
-   <div class="wrap">
-      <span>onclick="Animate(this,{left:'1000px'},2000,'swing')"</span>
-      <a id="a1" href="#" onclick="Animate(this,{left:'1000px'},2000,'swing')">one</a>
-	  <button onclick="Animate.stop($('a1'),true)">停止</button>
+   <div class="main">
+      <div class="section">
+		  <p>动画一</p>
+          <div>
+		   <a id="a1" href="#" onclick="Animate(this,{left:'900px'},2000,'swing')">click me</a>
+		  </div>
+		  <button onclick="Animate.stop($('a1'))">停止</button>
 
-	  onclick="Animate.stop($('a1'))"
+     </div>
+	 
+	 <div class="section">
+		  <p>动画二</p>
+		  <div>
+			<a href="#" id="a2" onclick="Animate(this,{opacity:0},500,'swing')">click me</a>
+		  </div>	
+		  
+     </div>
+	 
+	 <div class="section">
+		  <p>动画三</p>
+          <div>
+		  <a href="#" id="a3" onclick="Animate(this,{height:'400px',width:'400px'},500,'swing')">click me</a>
+		  </div>
+
+     </div>
+	 
    </div>
-   <div class="wrap">
-	  <a href="#" class="a2" onclick="Animate(this,{opacity:0},500,'swing')">two</a>
-   </div>
-   <div class="wrap">
-	<a href="#" class="a3" onclick="Animate(this,{height:'400px',width:'400px'},500,'swing')">three</a>
-   </div>
+
+
 </body>
 </html>
