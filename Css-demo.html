@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<title>Css方法测试页面</title>
+	<style type="text/css">
+	
+	    div{
+		  margin:20px;
+		  width:200px;
+		  height:200px;
+		}
+		#d1{
+		  background:red;
+		}
+	
+	</style>
+	<script type="text/javascript">
+	
+		var	$=function(id){
+			return document.getElementById(id);
+		};
+		
+		var Css={                                //css对象，用于设置样式或者获取样式
+		   
+		   get:function(elem,style){
+		   
+			   var value;
+			   if(style == "float"){
+				 document.defaultView ? style = 'cssFloat': style='styleFloat';
+			   }
+			   if(style=="opacity"){
+				 document.defaultView ? style = 'opacity': style='filter';
+			   }
+					  
+			   if (document.defaultView && document.defaultView.getComputedStyle) {
+				 var value=document.defaultView.getComputedStyle(elem, null)[style];
+
+			   }else if (elem.currentStyle){
+
+					value = elem.currentStyle[style];
+					if(style=="filter"){
+					
+						if(value.match("alpha")){
+						
+							value=value.match(/\d+/)[0]/100;
+						
+						}else if(!value){
+						
+							value="1";
+						}
+					}
+				 
+			   }
+
+			typeof value=="string"&&value.match("px")?value=parseInt(value.replace("px","")):value;          //如果value包含px则转换成num
+			
+			return value;
+								   
+		   },
+		   set:function(elem,style,value){
+		   
+			  if(style=="float"){
+				document.defaultView ? style = 'cssFloat': style='styleFloat';
+			  }
+			  if(style=="opacity"){
+				elem.style.filter="alpha(opacity="+value*100+")";
+				elem.style.zoom=1;
+			  }
+				elem.style[style]=value;
+		   }
+		  
+		
+		
+		};
+		
+	</script>
+</head>
+<body>
+	
+	<div id="d1">
+	
+	</div>
+	
+	<button onclick="alert(Css.get($('d1'),'width'))">获取宽度</button>
+	<button onclick="alert(Css.get($('d1'),'opacity'))">获取透明度</button>
+	<button onclick="alert(Css.get($('d1'),'float'))">获取float</button>
+	<button onclick="alert(Css.get($('d1'),'backgroundColor'))">获取背景色</button>
+	
+	<button onclick="Css.set($('d1'),'width','400px')">设置宽度</button>
+	<button onclick="Css.set($('d1'),'opacity',0.5)">设置透明度</button>
+	<button onclick="Css.set($('d1'),'float','left')">设置float:left</button>
+	<button onclick="Css.set($('d1'),'backgroundColor','#000')">设置背景色</button>
+	
+</body>
+</html>
