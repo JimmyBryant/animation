@@ -31,14 +31,23 @@
 	
 	</style>
 	<script type="text/javascript" src="animation.js"></script>
+	<script type="text/javascript">
+		var $=function(id){
+			return document.getElementById(id);
+		};
+	</script>
 
 </head>
 <body>
    <div class="wrap">
-      <a href="#" onclick="Animate(this,{left:'600px'},500,'swing')">one</a>
+      <span>onclick="Animate(this,{left:'1000px'},2000,'swing')"</span>
+      <a id="a1" href="#" onclick="Animate(this,{left:'1000px'},2000,'swing')">one</a>
+	  <button onclick="Animate.stop($('a1'),true)">停止</button>
+
+	  onclick="Animate.stop($('a1'))"
    </div>
    <div class="wrap">
-	  <a href="#" class="a2" onclick="Animate(this,{opacity:0.1},500,'swing')">two</a>
+	  <a href="#" class="a2" onclick="Animate(this,{opacity:0},500,'swing')">two</a>
    </div>
    <div class="wrap">
 	<a href="#" class="a3" onclick="Animate(this,{height:'400px',width:'400px'},500,'swing')">three</a>

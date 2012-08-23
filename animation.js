@@ -43,9 +43,6 @@ timers队列会定时遍历队列中所有的FX对象，执行FX.step()方法。
 		}
 	   
 	
-	},
-	$=function(id){
-		return document.getElementById(id);
 	};
     
 	var Css={                                //css对象，用于设置样式或者获取样式
@@ -80,9 +77,9 @@ timers队列会定时遍历队列中所有的FX对象，执行FX.step()方法。
 				 
 			   }
 
-			typeof value=="string"&&value.match("px")?value=parseInt(value.replace("px","")):value;          //如果value包含px则转换成num
-			style=="opacity"?value=parseInt(value):value;
-			return value;
+			   typeof value=="string"&&value.match("px")?value=parseInt(value.replace("px","")):value;          //如果value包含px则转换成num
+			   style=="opacity"?value=parseInt(value):value;
+			   return value;
 								   
 		   },
 		   set:function(elem,style,value){
@@ -133,14 +130,28 @@ timers队列会定时遍历队列中所有的FX对象，执行FX.step()方法。
 	   }
 	
 	};
-	Animate.getOpt=function(duration, easing, callback){
+	Animate.getOpt=function(duration, easing, callback){       // 修正参数
 	
 		 var options ={duration:duration||200,easing:easing||"linear"};
 		 options.callback=function(){callback&&callback();};
 		 return options;
 	
 	};
-
+    Animate.stop=function(elem,end){                               //停止某个dom元素的动画  end为true则会把动画进行到最后一帧 false则停止到当前帧
+	    end=end||false;
+		for(var i=timers.length;i--;){
+		   var fx=timers[i];
+		   if(fx.elem===elem){
+		    if(end){
+			  fx.update(fx.name,fx.end); 
+			}
+		    timers.splice(i,1);
+		   }
+		
+		}
+	
+	
+	};
 
 	var FX=function(elem,options,name){                      //FX对象    每一个css属性实例一个FX对象 
 	
@@ -173,10 +184,7 @@ timers队列会定时遍历队列中所有的FX对象，执行FX.step()方法。
             var pos =Easing[this.options.easing](state, 0, 1, this.options.duration);  
             nowPos = this.start + ((this.end - this.start) * pos);  
         }  
-		if(this.name!="opacity")
-		{
-			nowPos+="px";
-		}
+
         this.update(this.name,nowPos);  
 	};
 	
@@ -193,6 +201,11 @@ timers队列会定时遍历队列中所有的FX对象，执行FX.step()方法。
 	
 	FX.prototype.update=function(name,value){
 	
+		if(name!="opacity")
+		{
+			value+="px";
+		}
+	
 		Css.set(this.elem,name,value);
 	
 	};
@@ -203,7 +216,7 @@ timers队列会定时遍历队列中所有的FX对象，执行FX.step()方法。
    
         timerId = setInterval(function(){  
             for (var i = 0,len=timers.length;i<len;i++){  
-                timers[i].step();  
+                timers[i]&&timers[i].step();  
             }  
             if (!timers.length){  
                 FX.stop();  
@@ -211,7 +224,7 @@ timers队列会定时遍历队列中所有的FX对象，执行FX.step()方法。
         }, 13);  
     };  
      
-	FX.stop = function(){                                  //清除全局计时器 停止动画 
+	FX.stop = function(){                                  //清除全局计时器 停止所有动画 
         clearInterval(timerId);   
         timerId = null;  
     };
