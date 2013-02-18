@@ -1,0 +1,75 @@
+<!doctype>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Qunit</title>
+	<link rel="stylesheet" href="http://code.jquery.com/qunit/qunit-1.11.0.css"/>
+  <script type="text/javascript" src="../css.js"></script>
+  <style type="text/css">
+      body{
+        font-size: 12px;
+        width: 100%;
+      }
+       #div1{
+          width: 600px;
+          padding: 2em;
+          margin: 30px auto;
+          background: #000;
+          color: #FFF;
+          opacity: 0.9;
+          filter:alpha(opacity=90);
+       }
+  </style>
+</head>
+<body>
+
+<div id="div1">
+  <p>该页对css对象进行测试</p>
+  <p>将分别测试css对象的get和set方法</p>
+</div>
+
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+
+<script src="http://code.jquery.com/qunit/qunit-1.11.0.js"></script>
+<script type="text/javascript">
+
+  var elem=document.getElementById('div1');
+
+	QUnit.test( "testing get method of css object", function( assert ) {
+
+     function yes(name,expect){
+       assert.equal(css.get(elem,name),expect,name+' is '+expect);
+     };
+     function not(name,expect){
+       assert.notEqual(css.get(elem,name),expect,name+' is not '+expect);
+     };
+
+     not('paddingTop','2em');
+     not('backgroundColor',undefined);
+     assert.ok(css.get(elem,'opacity'),'opacity is not null');
+     yes('marginTop','30px');
+     not('marginLeft','auto');
+     not('width','auto');
+     not('height','auto');
+     yes('float','none');
+  });
+
+  QUnit.test( "testing set method of css object", function( assert ) {
+
+     function yes(name,expect){
+        css.set(elem,name,expect);
+        assert.equal(css.get(elem,name),expect,name+' is '+expect);
+     };
+
+     yes('width','300px');
+     yes('height','400px')
+     yes('float','right');  
+     yes('textAlign','center');  
+
+  });
+
+</script>
+
+</body>
+</html>

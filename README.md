@@ -1,17 +1,10 @@
-Animation
-=========
-Ò»¸öÀàËÆjquery animateµÄÒ»¸öjs ¶¯»­·½·¨
+#csså¯¹è±¡
 
-Animate(elem,property,duration,easing,callback)
-=========
+csså¯¹è±¡ç®€åŒ–è‡ªjqueryï¼Œæ‰€ä»¥åŠŸèƒ½è‚¯å®šæ²¡æœ‰jqueryçš„cssæ–¹æ³•å¼ºå¤§ã€‚
+æå–è¯¥å¯¹è±¡çš„ç›®çš„ä¸»è¦æ˜¯ä¸ºä»€ä¹ˆæ–¹ä¾¿ä½¿ç”¨ï¼Œå› ä¸ºå¯¼å…¥ä¸€ä¸ªjqueryæ–‡ä»¶å®åœ¨æ˜¯æ„Ÿè§‰æœ‰ç‚¹å¤§
 
-elem:½øĞĞ¶¯»­µÄdomÔªËØ   *±ØĞë
-property:¶¯»­ÊôĞÔ eg:{left:"100px",top:"10px"}
-duration:¶¯»­Ê±¼ä  eg:500   numÀàĞÍ  
-easing:¶¯»­·½Ê½ Ä¬ÈÏ "linear"
-callback:¶¯»­»Øµ÷º¯Êı
-
-Animate.stop(elem,end)
-=========
-Í£Ö¹elemÔªËØÉÏµÄ¶¯»­£¬end ÎªtrueÔò»áÔÚ×îºóÒ»Ö¡Í£Ö¹£¬falseÔòÔÚµ±Ç°Ö¡Í£Ö¹¡£Ä¬ÈÏfalse
-
+1.è·å–æ ·å¼
+css.get(elem,name)
+2.è®¾ç½®æ ·å¼
+css.set(elem,name,value)
+*************************************
