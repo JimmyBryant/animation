@@ -14,5 +14,5 @@ css.set(elem,name,value)
 animate.js同样提取自jquery。
 
 ###如何使用
-1.Animate(elem).animate(properties,[duration],[easing],[callback]) 
+1.Animate(elem).animate(properties,[duration],[easing],[callback])   
 中括号内的参数表示可选

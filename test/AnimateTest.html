@@ -1,0 +1,49 @@
+<!doctype>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Qunit</title>
+	<link rel="stylesheet" href="http://code.jquery.com/qunit/qunit-1.11.0.css"/>
+  <script type="text/javascript" src="../animate.js"></script>
+  <style type="text/css">
+      body{
+        font-size: 12px;
+        width: 100%;
+      }
+       #div1{
+          width: 600px;
+          padding: 2em;
+          margin: 30px auto;
+          background: #000;
+          color: #FFF;
+          opacity: 0.9;
+          filter:alpha(opacity=90);
+       }
+  </style>
+</head>
+<body>
+
+<div id="div1">
+  <p>该页对css对象进行测试</p>
+  <p>将分别测试css对象的get和set方法</p>
+</div>
+
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+
+<script src="http://code.jquery.com/qunit/qunit-1.11.0.js"></script>
+<script type="text/javascript">
+
+  var elem=document.getElementById('div1');
+
+	QUnit.test( "testing get method of css object", function( assert ) {
+
+
+  });
+
+
+
+</script>
+
+</body>
+</html>
