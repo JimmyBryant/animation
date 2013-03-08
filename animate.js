@@ -141,7 +141,13 @@ var Animate=function(elem){
 			}
 		},
 		set:function(elem,name,value){
-
+			// 如果name是对象
+			if(typeof name=="object"&&value===undefined){
+				for(var pro in name){
+					css.set(elem,pro,name[pro]);
+				}
+				return;
+			}
 			if(window.getComputedStyle){
 				name=name==="float"?"cssFloat":name;
 			}else{
@@ -205,6 +211,24 @@ var Animate=function(elem){
 	
 	};
 
+    Animate.stop=function(end){  //停止某个dom元素的动画  end为true则会把动画进行到最后一帧 false则停止到当前帧
+    	
+    	var elem=this.elem;
+	    end=end||false;
+		for(var i=0;i<timers.length;i--){
+
+		   var fx=timers[i];
+		   if(fx.elem===elem){
+		    if(end){
+			  fx.update(fx.name,fx.end); 
+			}
+		    timers.splice(i--,1); //移除fx要将i减1
+		   }
+		
+		}
+		return this;	
+	};
+
 	Animate.getOpt=function(duration, easing, callback){       // 修正参数
 		 var opt={};
 		 opt.duration=duration;
@@ -221,24 +245,6 @@ var Animate=function(elem){
  		 opt.duration=typeof opt.duration=="number"?opt.duration:400;
  		 opt.easing=typeof opt.easing=="string"?opt.easing:"swing";
 		 return opt;
-	
-	};
-
-    Animate.stop=function(elem,end){  //停止某个dom元素的动画  end为true则会把动画进行到最后一帧 false则停止到当前帧
-
-	    end=end||false;
-		for(var i=0;i<timers.length;i--){
-
-		   var fx=timers[i];
-		   if(fx.elem===elem){
-		    if(end){
-			  fx.update(fx.name,fx.end); 
-			}
-		    timers.splice(i--,1); //移除fx要将i减1
-		   }
-		
-		}
-	
 	
 	};
 

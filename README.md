@@ -7,7 +7,7 @@ css.js简化自[jquery](http://www.jquery.com)的css方法。jQuery本身的css�
 1.获取样式  
 css.get(elem,name)  
 2.设置样式  
-css.set(elem,name,value) 
+css.set(elem,name,value) 或者css.set(elem,{})
 
 ##animate.js
 

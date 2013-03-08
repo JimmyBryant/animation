@@ -1,8 +1,7 @@
 /*！
 * css object 
 *
-* 该方法是我从jQuery1.8中简化出来的
-* 当然功能就没有jQuery中的css方法那么强大
+* 该方法提取自jQuery1.8
 *
 */
 
@@ -120,7 +119,13 @@ var css = {
 			}
 		},
 		set:function(elem,name,value){
-
+			// 如果name是对象
+			if(typeof name=="object"&&value===undefined){
+				for(var pro in name){
+					css.set(elem,pro,name[pro]);
+				}
+				return;
+			}
 			if(window.getComputedStyle){
 				name=name==="float"?"cssFloat":name;
 			}else{
